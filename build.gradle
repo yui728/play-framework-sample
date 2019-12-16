@@ -1,10 +1,11 @@
 plugins {
+    // id 'play'
     id 'org.gradle.playframework' version '0.9'
     id 'idea'
 }
 
-def playVersion = "2.8.0"
-def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2.13")
+def playVersion = "2.6.25"
+def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2.12 ")
 
 //model {
 //    components {
@@ -21,13 +22,13 @@ def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2
 //    }
 //}
 
-play {
-    platform {
-        playVersion=playVersion
-        scalaVersion=scalaVersion
-        javaVersion=JavaVersion.VERSION_13
-    }
-    injectedRoutesGenerator = true
+    play {
+        platform {
+            playVersion=playVersion
+            scalaVersion=scalaVersion
+            javaVersion=JavaVersion.VERSION_13
+        }
+        injectedRoutesGenerator = true
 
 //    sources {
 //        twirlTemplates {
@@ -37,18 +38,18 @@ play {
 }
 
 
-def dependencyFor(String lib, String scalaVersion, String version) {
-    return lib + "_" + scalaVersion + ":" + version
-} 
+//def dependencyFor(String lib, String scalaVersion, String version) {
+//    return lib + "_" + scalaVersion + ":" + version
+//}
 
 dependencies {
 //    play dependencyFor("com.typesafe.play:play-guice", scalaVersion, playVersion)
 //    play dependencyFor("com.typesafe.play:play-logback", scalaVersion, playVersion)
 //    play dependencyFor("com.typesafe.play:filters-helpers", scalaVersion, playVersion)
-    implementation 'com.google.guava:guava:28.0-jre'
     implementation "commons-lang:commons-lang:2.6"
-    implementation dependancyFor("com.typesafe.play:play-guice", scalaVersion, playVersion)
+    implementation "com.typesafe.play:play-guice_2.12:2.6.25"
     implementation "ch.qos.logback:logback-classic:1.2.3"
+    testImplementation "org.scalatestplus.play:scalatestplus-play_2.12:3.1.2"
 }
 
 repositories {
